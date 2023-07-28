@@ -34,7 +34,16 @@ app.use(passport.session());
 
 //Mongoose connection
 //mongoose.connect("mongodb://127.0.0.1:27017/userDB");
-mongoose.connect(process.env.MONGO_CONNECT);
+//mongoose.connect(process.env.MONGO_CONNECT);
+const connectDB = async () => {
+    try {
+        const conn = await mongoose.connect(process.env.MONGO_URI);
+        console.log(`MongoDB Connected: ${conn.connection.host}`);
+    } catch (error) {
+        console.log(error);
+        process.exit(1);
+    }
+}
 
 
 //Create a user Schema
@@ -216,7 +225,7 @@ app.route("/submit")
     .get(async (req, res) => {
         try {
             if (req.isAuthenticated()) {
-                res.redirect("/submit");
+                res.render("submit");
             }
             else {
                 res.redirect("/login");
@@ -289,7 +298,8 @@ app.get("/logout", async (req, res) => {
     }
 });
 
-app.listen(PORT, function () {
-    console.log("Server started on port 3000");
-});
-
+connectDB().then(() => {
+    app.listen(PORT, () => {
+        console.log("listening for requests");
+    })
+})
