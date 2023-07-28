@@ -14,6 +14,7 @@ const GitHubStrategy = require('passport-github').Strategy;
 const findOrCreate = require('mongoose-findorcreate')
 
 const app = express();
+const PORT = process.env.PORT || 3000;
 
 app.set('view engine', 'ejs');
 
@@ -32,7 +33,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //Mongoose connection
-mongoose.connect("mongodb://127.0.0.1:27017/userDB");
+//mongoose.connect("mongodb://127.0.0.1:27017/userDB");
+mongoose.connect(process.env.MONGO_CONNECT);
+
 
 //Create a user Schema
 const { Schema } = mongoose;
@@ -286,7 +289,7 @@ app.get("/logout", async (req, res) => {
     }
 });
 
-app.listen(3000, function () {
+app.listen(PORT, function () {
     console.log("Server started on port 3000");
 });
 
