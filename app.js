@@ -143,32 +143,32 @@ app.get("/auth/github/secrets",
     });
 
 app.route("/register")
-.get( async (req, res) => {
-    try {
-        res.render("register");
-    }
-    catch (err) {
-        res.render(err);
-    }
-})
-.post(async (req, res) => {
-    try {
-        const registerUser = await User.register(
-            { username: req.body.username }, req.body.password
-        );
-        if (registerUser) {
-            passport.authenticate("local")(req, res, function () {
-                res.redirect("/secrets");
-            });
+    .get(async (req, res) => {
+        try {
+            res.render("register");
         }
-        else {
-            res.redirect("/login");
+        catch (err) {
+            res.render(err);
         }
-    }
-    catch (err) {
-        res.send(err);
-    }
-});
+    })
+    .post(async (req, res) => {
+        try {
+            const registerUser = await User.register(
+                { username: req.body.username }, req.body.password
+            );
+            
+            if (registerUser) {
+                passport.authenticate("local")(req, res, function () {
+                    res.redirect("/secrets");
+                });
+            } 
+            
+        } catch (err) {
+            console.log(err);
+            // res.send('<script>alert("A user with the given username exists, please login")</script>');
+            await res.redirect("/login");
+        }
+    });
 
 
 //login page
@@ -190,17 +190,19 @@ app.route("/login")
 
        
             req.login(user, (err) => {
-            if (err) {
+            if(err) {
                 console.log(err);
+                
             } else {
                 passport.authenticate("local")(req, res, function () {
-                    res.redirect("/secrets");
+                     res.redirect("/secrets");
+                    
                 });
             }
         })
         
     } catch (err) {
-        res.send(err);
+        console.log(err);
     }
 });
 
@@ -286,3 +288,5 @@ app.get("/logout", async (req, res) => {
 app.listen(3000, function () {
     console.log("Server started on port 3000");
 });
+
+               
