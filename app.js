@@ -216,7 +216,7 @@ app.route("/submit")
     .get(async (req, res) => {
         try {
             if (req.isAuthenticated()) {
-                res.render("submit");
+                res.redirect("/submit");
             }
             else {
                 res.redirect("/login");
