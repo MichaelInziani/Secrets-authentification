@@ -8,9 +8,30 @@ body {
     text-align: center;
 }
 
+h3{
+    text-align:center;
+    font-weight: 100; 
+}
+
 .secret-text {
   text-align: center;
   font-size: 2rem;
   color: #fff;
   background-color: #000;
 }
+#footer {
+    /*background-color: #D2DAFF;*/
+    padding: 25% 20% 2%;
+    text-align: center;
+}
+
+.footer-image { 
+    color: #808080;
+}
+.nav-item{
+    padding: 2%;
+}
+    .footer-image:hover {
+        color: #4B0082;
+    }
+
