@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "authentification on websites",
   "scripts": {
-    "start": "nodemon app.js"
+     "start": "node app.js",
+            "dev": "nodemon app.js"
   },
   "author": "Michael Inziani",
   "license": "ISC",
