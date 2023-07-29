@@ -2,6 +2,9 @@
   "name": "secrets-authentification",
   "version": "1.0.0",
   "description": "authentification on websites",
+  "engines": {
+    "node": ">=20 <5"
+  }
   "scripts": {
     "start": "node app.js"
   },
