@@ -31,7 +31,6 @@
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^8.0.0",
     "sinon": "^15.2.0",
-    "yarn": "^1.22.19",
-    "NODE-VERSION":"^18.17.0"
+    "yarn": "^1.22.19"
   }
 }
