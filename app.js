@@ -11,8 +11,7 @@ const PassportLocalMongoose = require("passport-local-mongoose");
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const FacebookStrategy = require("passport-facebook").Strategy;
 const GitHubStrategy = require('passport-github').Strategy;
-const findOrCreate = require('mongoose-findorcreate')
-const fs = require('fs-extra');
+const findOrCreate = require('mongoose-findorcreate');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
