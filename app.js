@@ -32,7 +32,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-//Mongoose connection
+//Create a mongoose connection
 //mongoose.connect("mongodb://127.0.0.1:27017/userDB");
 //mongoose.connect(process.env.MONGO_CONNECT);
 const connectDB = async () => {
@@ -137,7 +137,7 @@ app.get("/auth/facebook",
     passport.authenticate("facebook", { scope: ["public_profile"] }));
 
 app.get("/auth/facebook/secrets",
-    passport.authenticate("facebook", { failureRedirect: "/login" }),
+    passport.authenticate("facebook", { failureRedirect: "/login" }), 
     function (req, res) {
         // Successful authentication, redirect home.
         res.redirect("/secrets");
